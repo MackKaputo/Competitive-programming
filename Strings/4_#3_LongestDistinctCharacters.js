@@ -26,40 +26,44 @@
  * @returns {number}
  */
 function longestSubstrDistinctChars(str) {
-    let start = 0
-    let strLength = str.length
-    let maxThusFar = 0
-    let maxHere = 0
-
-    let hash = {}
-
-    if (str.length === 1 ) { return 1}
-
-    if (str.length === 0) { return 0 }
-
-    for (let i = 0; i < strLength; i++) {
-
-        if (hash[str[i]] !== undefined ) {
-            maxHere = i - start
-            start++
+    var n = str.length ;
+     
+    // Result
+    var res = 0;
+     
+    for(var i = 0; i < n; i++)
+    {
+         
+        // Note : Default values in visited are false
+        var visited = [];
+         
+        for(var j = i; j < n; j++)
+        {
+             
+            // If current character is visited
+            // Break the loop
+            if (visited[str.charAt(j)] == true)
+                break;
+ 
+            // Else update the result if
+            // this window is larger, and mark
+            // current character as visited.
+            else
+            {
+                res = Math.max(res, j - i + 1);
+                visited[str.charAt(j)] = true;
+            }
         }
-
-        hash[str[i]] = str[i]
-
-        if(maxThusFar <= maxHere ) {
-            maxThusFar = maxHere
-        }
-
+ 
+        // Remove the first character of previous
+        // window
+        visited[str.charAt(i)] = false;
     }
-
-    if (start === 0) {
-        return str.length
-    }
-
-    return maxThusFar
+    return res;
 }
 
 console.log(longestSubstrDistinctChars("hello"))
 console.log(longestSubstrDistinctChars("aaa"))
 console.log(longestSubstrDistinctChars("geeksforgeeks"))
 console.log(longestSubstrDistinctChars("pa"))
+console.log(longestSubstrDistinctChars("pwwkew"))

@@ -14,7 +14,7 @@
 // Explanation:
 // The common elements in sorted order are {2 2 3}
 
-//! Following solution won't include duplcates in output
+//! Following solution won't include duplicates in output
 function commonElement(v1, v2) {
     // Initialize hash maps to store values
     let hashMap1 = new Map()

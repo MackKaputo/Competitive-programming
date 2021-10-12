@@ -1,24 +1,24 @@
-var removeDuplicates = function(nums) {
-    
-    let hash = {}
-    let pointer = 0
-    
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+ var findShortestSubArray = function(nums) {
+    //find degree of array
+    let hash = new Map()
     for (let i = 0; i < nums.length; i++) {
-        
-        if (hash[nums[i]] !== undefined ) {
-            continue
+        if (hash.has(nums[i])) {
+            hash.set(nums[i], hash.get(nums[i]) + 1)
         } else {
-            hash[nums[i]] = hash[nums[i]]
-            nums[pointer++] = nums[i]
+            hash.set(nums[i], 1)
         }
-        
-        
-        
     }
-    
-   return nums
-    
-    
-}
 
-console.log(removeDuplicates([1,1,2,3,3,4,4,4,4]))
+    let degree = 0
+    for (const [key, value ] of hash) {
+        if(value > degree) {
+            degree = value
+        } 
+    }
+
+    //find shortest subarray
+};
