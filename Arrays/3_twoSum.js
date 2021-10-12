@@ -28,8 +28,8 @@ function twoSum(nums, target) {
     let pairs = []
 
     for (let i = 0; i < nums.length; i++){
-        // Compute the difference between between target and current number
-        // and look in the hash if that difference exists
+        // Compute the difference between target and current number
+        // and look in the hash if that difference exists, made of elements we already looped through
         let difference = target - nums[i]
 
         if(hash[difference] !== undefined ){
