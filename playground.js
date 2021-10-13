@@ -20,5 +20,5 @@
         } 
     }
 
-    //find shortest subarray that satisfies degree found
-};
+    //find shortest subarray that satisfies degree found 
+}; 
