@@ -14,40 +14,29 @@
 // the input array in-place with O(1) extra memory.
 
 /**
+ * *Accepted @leetcode submission
  * @param {number[]} nums
  * @return {number}
  */
  var removeDuplicates = function(nums) {
+    if( nums.length === 1) {
+        return 1
+    }
+    else if (nums.length === 0 ) { return 0}
     
-    // Return, if array is empty
-    // or contains a single element
-    let n = nums.length;
+    let temp = []
+
+    // If current element is not equal to the next element, add it the the unique list of items
+    for (let i = 0; i < nums.length; i++ ) {
+        
+        if (nums[i] !== nums[i + 1]) {
+            temp.push(nums[i])
+        }
+    }
     
-    if (n==0 || n==1)
-        return n;
- 
-    var temp = new Array(n);
- 
-    // Start traversing elements
-    var j = 0;
-    for (var i=0; i<n-1; i++)
- 
-        // If current element is not equal
-        // to next element then store that
-        // current element
-        if (nums[i] != nums[i+1])
-            temp[j++] = nums[i];
- 
-    // Store the last element as whether
-    // it is unique or repeated, it hasn't
-    // stored previously
-    temp[j++] = nums[n-1];
- 
-    // Modify original array
-    for (var i=0; i<j; i++)
-        nums[i] = temp[i];
- 
-    return j;
+    for (let i = 0; i < temp.length; i++) {
+        nums[i] = temp[i]
+    }
     
-    
+    return temp.length
 };

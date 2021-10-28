@@ -1,24 +1,22 @@
-/**
- * @param {number[]} nums
- * @return {number}
- */
- var findShortestSubArray = function(nums) {
-    //find degree of array
-    let hash = new Map()
-    for (let i = 0; i < nums.length; i++) {
-        if (hash.has(nums[i])) {
-            hash.set(nums[i], hash.get(nums[i]) + 1)
-        } else {
-            hash.set(nums[i], 1)
+
+function findMissingRanges(nums, lower, upper) {
+    const result = []
+    const count = (lo, hi) => hi - lo - 1
+    const set = (lo, hi) => {
+        if (count(lo, hi) === 1) {
+        result.push(`${lo + 1}`)
+        } else if (count(lo, hi) > 1) {
+        result.push(`${lo + 1}->${hi - 1}`)
         }
     }
 
-    let degree = 0
-    for (const [key, value ] of hash) {
-        if(value > degree) {
-            degree = value
-        } 
+    for (let i = 0; i <= nums.length; i++) {
+        set(
+            i === 0 ? lower - 1 : nums[i - 1],
+            i === nums.length ? upper + 1 : nums[i],
+        )
     }
+    return result
+}
 
-    //find shortest subarray that satisfies degree found 
-}; 
+console.log(findMissingRanges([1,3,10], 1, 15))

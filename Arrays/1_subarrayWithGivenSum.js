@@ -21,7 +21,6 @@ function subarrayWithGivenSum(arr, target) {
     for (let i = 0; i < n; i++) {
         current_sum = current_sum + arr[i]
 
-
         while (current_sum > target && start < i) {
             current_sum = current_sum - arr[start]
             start++
