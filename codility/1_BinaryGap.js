@@ -1,4 +1,4 @@
-function BinaryGap(N) {
+function solution(N) {
     // convert number to binary (this works for positive numbers)
     let binaryN = N.toString(2)
     // get array of charaters
