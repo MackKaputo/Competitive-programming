@@ -1,4 +1,4 @@
-//! Conccept : Keeping track of Sum of current subarray
+//! Conccept : Keeping track of Sum of current subarray of given length
 
 function birthday(s, d, m) {
     // Write your code here

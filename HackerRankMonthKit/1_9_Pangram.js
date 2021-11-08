@@ -23,6 +23,9 @@ function pangrams(s) {
         return "not pangram"
     }
 
+    //* We could further split to get individual characters arrays
+    //* And create a set from it, then check if size of Set is 26
+
 }
 
 console.log(pangrams("not really"))

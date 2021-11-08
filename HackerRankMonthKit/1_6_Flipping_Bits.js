@@ -6,6 +6,8 @@ function flippingBits(n) {
     for (const char of y) {
         result += char == "0" ? "1" : "0"; // invert bits
     }
+
+    // Convert back to decimal 
     return parseInt(result, 2);
 
 }

@@ -4,7 +4,7 @@ function plusMinus(arr) {
     let hash = new Map()
     hash.set('pos',0)
     hash.set('neg',0)
-    hash.set('zero',0)
+    hash.set('zero',0) //* We could instead have three counters!
 
     for (let number of arr) {
         if(number > 0){
