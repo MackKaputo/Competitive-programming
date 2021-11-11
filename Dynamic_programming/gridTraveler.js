@@ -5,3 +5,5 @@ const gridTraveler = (m, n) => {
     return gridTraveler(m - 1, n) + gridTraveler(m, n - 1)
 }
 
+console.log(gridTraveler(1, 1))
+console.log(gridTraveler(2, 3))
