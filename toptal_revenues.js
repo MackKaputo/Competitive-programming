@@ -20,7 +20,7 @@ function solution(A) {
     return 
 }
 
-console.log(solution([10, -10, -1, -1, 10]))  //1
+console.log(solution([10, -10, -1, -1, 10]))  //1 
 // console.log(solution([-1, -1, -1, 1, 1, 1, 1])) //3
 // console.log(solution([5, -2, -3, 1])) //0
 // console.log(solution([-1,2]))  //1
