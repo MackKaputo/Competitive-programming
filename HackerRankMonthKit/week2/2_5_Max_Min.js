@@ -1,8 +1,10 @@
 
 function maxMin(k, arr) {
     // Write your code here
-    arr.sort((a,b) => a - b)
-    let diff_arr = []
+
+    //this makes it easy to get the maximum and minimum for a subarray,
+    // max - min is also minimized this way
+    arr.sort((a,b) => a - b)  
 
     let i = 0
 
@@ -38,4 +40,5 @@ function maxMin(k, arr) {
 
 
 
-console.log(maxMin(2, [1, 4, 7, 2]))
+console.log(maxMin(2, [1, 4, 7, 2])) // 1
+console.log(maxMin(3, [1, 4, 7, 2])) //3
