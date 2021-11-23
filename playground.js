@@ -1,22 +1,18 @@
 
-function findMissingRanges(nums, lower, upper) {
-    const result = []
-    const count = (lo, hi) => hi - lo - 1
-    const set = (lo, hi) => {
-        if (count(lo, hi) === 1) {
-        result.push(`${lo + 1}`)
-        } else if (count(lo, hi) > 1) {
-        result.push(`${lo + 1}->${hi - 1}`)
+function Occurence(arr) {
+
+    let hash = new Map()
+    let maxCounter = 0
+
+    for (let number of arr) {
+        if(hash.has(number)){
+            hash.set(number, hash.get(number) + 1)
+        } else {
+            hash.set(number, 1)
+        }
+
+        if(hash.get(number) > maxCounter) {
+            maxCounter = hash.get(number)
         }
     }
-
-    for (let i = 0; i <= nums.length; i++) {
-        set(
-            i === 0 ? lower - 1 : nums[i - 1],
-            i === nums.length ? upper + 1 : nums[i],
-        )
-    }
-    return result
 }
-
-console.log(findMissingRanges([1,3,10], 1, 15))

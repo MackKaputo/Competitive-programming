@@ -5,7 +5,8 @@ function maxMin(k, arr) {
     //this makes it easy to get the maximum and minimum for a subarray,
     // max - min is also minimized this way
     arr.sort((a,b) => a - b)  
-
+    let diff_arr = []
+    
     let i = 0
 
     while (k + i <= arr.length) {
