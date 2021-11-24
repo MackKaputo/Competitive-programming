@@ -49,7 +49,7 @@ function sherLock2(arr) {
 }
 
 console.log("----------")
-console.log(sherLock2([1,2,3,4])) // NO
+console.log(sherLock2([1,2,3,4])) // out => NO
 console.log(sherLock2([5, 6, 8, 11])) // YES
 console.log(sherLock2([0, 0, 4, -1, -4, 3])) //YES
 console.log(sherLock2([3,0])) //YES
