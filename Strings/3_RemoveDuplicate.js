@@ -23,21 +23,38 @@
 //* SOLUTION 1: USING HASH ( more EFFICIENT O(n))
 
 function removeDups(str) {
-    //initialise hash
-    let hash = {}
-    let finalStringArray = []
-    
-    for (let i = 0; i < str.length; i++) {
-        if (hash[str[i]] !== undefined) {
-            continue
-        }
+    //initialize hash map
+    let hash = new Map()
+    let finalString = ""  //Empty string here
 
-        hash[str[i]] = str[i]
-        finalStringArray.push(str[i])
+    for (let i = 0; i < str.length; i++){
+        if (hash.has(str[i])) {
+            continue
+        } else {
+            hash.set(str[i], str[i])
+            finalString += str[i]
+        }
     }
 
-    return finalStringArray.join("")
+    return finalString
 }
+
+// function removeDups(str) {
+        //initialise hash
+//     let hash = {}
+//     let finalStringArray = []
+    
+//     for (let i = 0; i < str.length; i++) {
+//         if (hash[str[i]] !== undefined) {
+//             continue
+//         }
+
+//         hash[str[i]] = str[i]
+//         finalStringArray.push(str[i])
+//     }
+
+//     return finalStringArray.join("")
+// }
 
 
 //* SOLUTION 2: USING SET  O( nlog(n) )
@@ -60,14 +77,13 @@ function removeDups2(str) {
     //Join values of unique strings from uniqueValuesArray and return it
 
     return uniqueValuesArray.join("")
-
    
 }
 
 
-console.log(removeDups("gfg"))
-console.log(removeDups("zvvo"))
-console.log(removeDups("deboflorenc"))
+console.log(removeDups("gfg")) //gf
+console.log(removeDups("zvvo")) //zvo
+console.log(removeDups("deboflorenc")) //deboflrnc
 console.log("\n")
 
 console.log(removeDups2("gfg"))

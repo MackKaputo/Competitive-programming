@@ -84,3 +84,5 @@ function doesStringContainAllWords(string, words) {
 // 1 <= words.length <= 5000
 // 1 <= words[i].length <= 30
 // words[i] consists of lower-case English letters.
+console.log(findSubstring("wordgoodgoodgoodbestword",["word","good","best","word"]))
+console.log(findSubstring("barfoofoobarthefoobarman",["bar","foo","the"]))

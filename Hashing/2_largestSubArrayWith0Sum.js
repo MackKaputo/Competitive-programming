@@ -37,7 +37,7 @@ function maxLength(arr) {
 
         if (sum == 0)
             max_len = i + 1;
-
+        
         // Look this sum in hash table
         let prev_i = hM.get(sum);
 

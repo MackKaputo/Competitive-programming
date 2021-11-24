@@ -5,7 +5,7 @@
 
 function sortFrequency(arr) {
     //Initialize counter hash
-    //! Object is used here BUT Map can be used here!! new Map() instead of {}
+    //! Object is used here BUT Map can also be used here!! new Map() instead of {}
     let elementCounter = {}
 
     for ( value of arr) {
@@ -22,7 +22,7 @@ function sortFrequency(arr) {
         
         let freq1 = elementCounter[a]
         let freq2 = elementCounter[b]
-
+        
         if ( freq1 !== freq2) {
             return freq2 - freq1
         } else {

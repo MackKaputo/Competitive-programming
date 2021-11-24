@@ -41,9 +41,41 @@ function commonElement(v1, v2) {
     let sortedCommonFound = foundCommon.sort((a, b) => {
         return a - b
     })
-
+    
     return sortedCommonFound
 }
 
+
 console.log(commonElement([3, 4, 2, 2, 4], [3, 2, 2, 7]))
 console.log(commonElement([1,2,3], [2,3,4]))
+
+
+//* Variant Solution including duplicates
+/**
+ * @param {int []} a 
+ * @param {int []} b 
+ */
+function commonElementWithDuplicates(a, b) {
+    let p1 = 0
+    let p2 = 0
+    let result = []
+
+    while (p1 < a.length && p2 < b.length) {
+        if(a[p1] === b[p2]) {
+            result.push(a[p1])
+
+            p1 += 1
+            p2 += 1
+        }
+
+        else if (a[p1] > b[p2]) {
+            p2 += 1
+        }
+
+        else {
+            p1 += 1
+        }
+    }
+
+    return result
+}
