@@ -119,7 +119,7 @@ function cleanRoom(matrix) {
     
 }
 
-// let my_matrix = [
+// let my_matrix1 = [
 //     [1,1,1,0],
 //     [0,1,1,0],
     
