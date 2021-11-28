@@ -12,6 +12,7 @@ function sol(S, C) {
         //get values at index
         values.push(row[i].split(",")[index])
     }
+    
     for (let i = 0; i < values.length; i++) {
         values[i] = Number(values[i])
     }
