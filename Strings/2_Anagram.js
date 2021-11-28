@@ -27,6 +27,42 @@
 // Constraints:
 // 1 ≤ |a|,|b| ≤ 10^5
 
+//! Linear complexity with hashMap
+function isAnagram2(string1, string2) {
+    if (string1.length !== string2.length) {
+        return "NO"
+    }
+
+    let hash1 = new Map()
+    let hash2 = new Map()
+
+    for (let char of string1) {
+        if (hash1.has(char)) {
+            hash1.set(char, hash1.get(char) + 1)
+        } else {
+            hash1.set(char, 1)
+        }
+    }
+
+    for (let char of string2) {
+        if (hash2.has(char)) {
+            hash2.set(char, hash2.get(char) + 1)
+        } else {
+            hash2.set(char, 1)
+        }
+    }
+
+    for (const [key, value] of hash1) {
+        if (hash2.get(key) !== value) {
+            return "NO"
+        }
+    }
+
+    return "YES"
+}
+
+
+//! O(n * m) : with n length of string1 and m length of string 2
 function isAnagram(string1, string2) {
     //check if both have same length
     if (string1.length !== string2.length) {
@@ -45,6 +81,12 @@ function isAnagram(string1, string2) {
     return "YES"
 }
 
-console.log(isAnagram("geeksforgeeks", "forgeeksgeeks"))
-console.log(isAnagram("act", "tac"))
-console.log(isAnagram("allergy", "allergic"))
+console.log(isAnagram("geeksforgeeks", "forgeeksgeeks")) // YES
+console.log(isAnagram("act", "tac")) // YES
+console.log(isAnagram("allergy", "allergic")) // NO
+
+
+console.log("=========================")
+console.log(isAnagram2("geeksforgeeks", "forgeeksgeeks"))
+console.log(isAnagram2("act", "tac"))
+console.log(isAnagram2("allergy", "allergic"))
