@@ -54,7 +54,7 @@ function cleanRoom(matrix) {
     let directions = ["right", "down",  "left", "up", ]
     let cleaned_positions = new Map()
     // assuming first position always available
-    cleaned_positions.set(0, 0)
+    cleaned_positions.set('(0,0)', '(0,0)')
 
     let direction_pointer_count = 0
     let count = 0
@@ -127,9 +127,9 @@ let my_matrix1 = [
 
 
 let my_matrix = [
-    [1,1,1,0],
-    [0,1,1,0],
-    [1,1,1,1]
+    [1,1,1,1],
+    [1,1,1,1],
+    [1,1,0,1]
     
 ]
 
