@@ -125,6 +125,7 @@ let my_matrix1 = [
     
 ]
 
+
 let my_matrix = [
     [1,1,1,0],
     [0,1,1,0],
@@ -136,3 +137,4 @@ let my_matrix = [
 cleanRoom(my_matrix)
 console.log(move("right", {x: 2, y: 3}))
 // console.log(my_matrix[2])
+
