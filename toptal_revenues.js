@@ -43,4 +43,6 @@ console.log(solution([0, -4, 7, -4, 1, 1, -5])) //1
 // You can assume that the sum of all elements in A is nonnegative
 
 // write a function that given an array A of n integers, returns the minimum number of relocations, so that
-// company never falls into debt.
+// company never falls into debt. 
+
+//END
