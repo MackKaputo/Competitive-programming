@@ -21,6 +21,20 @@ function reverseString(string) {
     return final_reversed_string
 }
 
+function reverseString2(string) {
+    let array_string = string.split("")
+    let reversed_string_array = array_string.reverse()
+    const reversed_string = reversed_string_array.join("")
+    console.log(reversed_string)
+    return reversed_string
+}
+
 reverseString("Cat")
 reverseString("The Daily Byte")
 reverseString("civic")
+
+console.log("\n")
+
+reverseString2("Cat")
+reverseString2("The Daily Byte")
+reverseString2("civic")
