@@ -13,6 +13,14 @@ class Node {
 
     depthFirstSearch(array) {
         // Write your code here
+        array.push(this.name)
+        if (this.children.length > 0) {
+            this.children.forEach((child) => {
+            child.depthFirstSearch(array)
+            })
+        }
+
+        return array
     }
 }
 
