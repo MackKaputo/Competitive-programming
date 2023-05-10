@@ -16,7 +16,7 @@ class Node {
         array.push(this.name)
         if (this.children.length > 0) {
             this.children.forEach((child) => {
-            child.depthFirstSearch(array)
+                child.depthFirstSearch(array)
             })
         }
 
