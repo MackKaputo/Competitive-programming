@@ -15,12 +15,12 @@ def hasSingleCycle(array):
 
 
 def hasSingleCycle2(array):
-    numElementsVisisted = 0
+    numElementsVisited = 0
     currentIdx = 0
-    while numElementsVisisted < len(array):
-        if numElementsVisisted > 0 and currentIdx == 0:
+    while numElementsVisited < len(array):
+        if numElementsVisited > 0 and currentIdx == 0:
             return False
-        numElementsVisisted += 1
+        numElementsVisited += 1
         currentIdx = getNextIdx(currentIdx, array)
     return currentIdx == 0
 
