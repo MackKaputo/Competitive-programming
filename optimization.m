@@ -24,17 +24,17 @@ end
 
 function J = objectiveFunction(u, w, epsilon, t0, Tf)
     % Set model parameters
-    Lambda = 100;
-    beta = 0.2;
-    eta = 0.1;
-    mu = 0.01;
-    alpha = [0.1, 0.1];
-    gamma = 0.2;
-    psi = [0.2, 0.2, 0.2, 0.2];
-    theta = [0.3, 0.3];
-    tau = 0.1;
-    rho = 0.4;
-    delta = [0.3, 0.3];
+    Lambda = 24500;
+    beta = 1.3295;
+    eta = 0.5663;
+    mu = 0.0161;
+    alpha = [0.6, 0.4];
+    gamma = 0.2070;
+    psi = [0.3622, 0.0206, 0.5586, 0.01614];
+    theta = [0.89976, 0.5];
+    tau = 0.46030;
+    rho = 0.75431;
+    delta = [0.15, 0.22858];
     
     S0 = 60000000 - 1;  % Initial value for S
     E0 = 0;   % Initial value for E
