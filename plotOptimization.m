@@ -31,7 +31,7 @@ function main()
     options.OutputFcn = outputFcn;
     x0 = [0.5, 0.5, 0.5, 0.5]; % Initial guesses for control variables u(1), u(2), u(3), u(4)
     lb = [0, 0, 0, 0]; % Lower bounds for control variables u(1), u(2), u(3), u(4)
-    ub = [1, 1, 1, 1]; % Upper bounds for control variables u(1), u(2), u(3), u(4)
+    ub = [1, 0, 0, 0]; % Upper bounds for control variables u(1), u(2), u(3), u(4)
     [u_optimal, J_optimal] = fmincon(@(u) objectiveFunction(u, w, epsilon, t0, Tf), x0, [], [], [], [], lb, ub, [], options);
     
     fprintf('Optimal control variables: u(1) = %.6f, u(2) = %.6f, u(3) = %.6f, u(4) = %.6f\n', u_optimal);
@@ -82,34 +82,34 @@ function main()
     
     % Plot the variation of Iu and Id with respect to time
     figure;
-    plot(t, Iu, 'b-', t, Id, 'r-');
+    plot(t, Iu, 'b-', t, Id, 'r-', t, Q, 'y-');
     xlabel('Time');
     ylabel('Iu and Id');
     title('Variation of Iu and Id over Time - optimal u values');
-    legend('Iu', 'Id');
+    legend('Iu', 'Id', 'Q');
     
 
-    % Solve the system of differential equations
-    u_non_optimal_example = [0.3, 0.003, 0.7, 0.8 ];
-    [t2, y2] = ode45(@(t2, y2) odefunc(t2, y2, u_non_optimal_example, Lambda, beta, eta, mu, alpha, gamma, psi, theta, tau, rho, delta), [t0, Tf], [S0, E0, Iu0, Id0, Q0, H0, C0, R0]);
-    
-    % Extract solution variables
-    S = y2(:, 1);
-    E = y2(:, 2);
-    Iu2 = y2(:, 3);
-    Id2 = y2(:, 4);
-    Q = y2(:, 5);
-    H = y2(:, 6);
-    C = y2(:, 7);
-    R = y2(:, 8);
-    
-    % Plot the variation of Iu and Id with respect to time
-    figure;
-    plot(t2, Iu2, 'b-', t2, Id2, 'r-');
-    xlabel('Time');
-    ylabel('Iu and Id');
-    title('Variation of Iu and Id over Time - non optimal u values');
-    legend('Iu', 'Id');
+    % Solve the system of differential equations for custom values of u
+    % u_non_optimal_example = [0.734909, 0, 0, 0 ];
+    % [t2, y2] = ode45(@(t2, y2) odefunc(t2, y2, u_non_optimal_example, Lambda, beta, eta, mu, alpha, gamma, psi, theta, tau, rho, delta), [t0, Tf], [S0, E0, Iu0, Id0, Q0, H0, C0, R0]);
+    % 
+    % % Extract solution variables
+    % S = y2(:, 1);
+    % E = y2(:, 2);
+    % Iu2 = y2(:, 3);
+    % Id2 = y2(:, 4);
+    % Q = y2(:, 5);
+    % H = y2(:, 6);
+    % C = y2(:, 7);
+    % R = y2(:, 8);
+    % 
+    % % Plot the variation of Iu and Id with respect to time
+    % figure;
+    % plot(t2, Iu2, 'b-', t2, Id2, 'r-', t2, Q, 'y-');
+    % xlabel('Time');
+    % ylabel('Iu and Id');
+    % title('Variation of Iu and Id over Time - non optimal u values');
+    % legend('Iu', 'Id', 'Q');
 
 end
 
