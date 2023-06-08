@@ -31,19 +31,34 @@ function main()
     options.OutputFcn = outputFcn;
     x0 = [0.5, 0.5, 0.5, 0.5]; % Initial guesses for control variables u(1), u(2), u(3), u(4)
     lb = [0, 0, 0, 0]; % Lower bounds for control variables u(1), u(2), u(3), u(4)
-    ub = [1, 0, 0, 0]; % Upper bounds for control variables u(1), u(2), u(3), u(4)
-    [u_optimal, J_optimal] = fmincon(@(u) objectiveFunction(u, w, epsilon, t0, Tf), x0, [], [], [], [], lb, ub, [], options);
-    
-    fprintf('Optimal control variables: u(1) = %.6f, u(2) = %.6f, u(3) = %.6f, u(4) = %.6f\n', u_optimal);
-    fprintf('Optimal objective function value: %.6f\n', J_optimal);
+    ub_1000 = [1, 0, 0, 0]; % Upper bounds for control variables u(1), u(2), u(3), u(4)
+    ub_1100 = [1, 1, 0, 0];
+    ub_1110 = [1, 1, 1, 0];
+    ub_1111 = [1, 1, 1, 1];
 
-    figure;
-    plot(u_values);
-    xlabel('Iteration');
-    ylabel('Control Variable u');
-    title('Variation of Control Variable u during Iterations');
-     % Add labels for each line plotted
-    legend('u(1)', 'u(2)', 'u(3)', 'u(4)');
+    [u_optimal_1000, J_optimal_1000] = fmincon(@(u) objectiveFunction(u, w, epsilon, t0, Tf), x0, [], [], [], [], lb, ub_1000, [], options);
+    fprintf('Optimal control variables: u(1) = %.6f, u(2) = %.6f, u(3) = %.6f, u(4) = %.6f\n', u_optimal_1000);
+    fprintf('Optimal objective function value: %.6f\n', J_optimal_1000);
+
+    [u_optimal_1100, J_optimal_1100] = fmincon(@(u) objectiveFunction(u, w, epsilon, t0, Tf), x0, [], [], [], [], lb, ub_1100, [], options);
+    fprintf('Optimal control variables: u(1) = %.6f, u(2) = %.6f, u(3) = %.6f, u(4) = %.6f\n', u_optimal_1100);
+    fprintf('Optimal objective function value: %.6f\n', J_optimal_1100);
+
+    [u_optimal_1110, J_optimal_1110] = fmincon(@(u) objectiveFunction(u, w, epsilon, t0, Tf), x0, [], [], [], [], lb, ub_1110, [], options);
+    fprintf('Optimal control variables: u(1) = %.6f, u(2) = %.6f, u(3) = %.6f, u(4) = %.6f\n', u_optimal_1110);
+    fprintf('Optimal objective function value: %.6f\n', J_optimal_1110);
+
+    [u_optimal_1111, J_optimal_1111] = fmincon(@(u) objectiveFunction(u, w, epsilon, t0, Tf), x0, [], [], [], [], lb, ub_1111, [], options);
+    fprintf('Optimal control variables: u(1) = %.6f, u(2) = %.6f, u(3) = %.6f, u(4) = %.6f\n', u_optimal_1111);
+    fprintf('Optimal objective function value: %.6f\n', J_optimal_1111);
+
+    % figure;
+    % plot(u_values);
+    % xlabel('Iteration');
+    % ylabel('Control Variable u');
+    % title('Variation of Control Variable u during Iterations');
+    %  % Add labels for each line plotted
+    % legend('u(1)', 'u(2)', 'u(3)', 'u(4)');
 
      % Set model parameters
     Lambda = 24500;
@@ -68,26 +83,68 @@ function main()
     R0 = 0;    % Initial value for R
 
     % Solve the system of differential equations
-    [t, y] = ode45(@(t, y) odefunc(t, y, u_optimal, Lambda, beta, eta, mu, alpha, gamma, psi, theta, tau, rho, delta), [t0, Tf], [S0, E0, Iu0, Id0, Q0, H0, C0, R0]);
-    
+    [t, y_1000] = ode45(@(t, y_1000) odefunc(t, y_1000, u_optimal_1000, Lambda, beta, eta, mu, alpha, gamma, psi, theta, tau, rho, delta), [t0, Tf], [S0, E0, Iu0, Id0, Q0, H0, C0, R0]);
+    [t2, y_1100] = ode45(@(t2, y_1100) odefunc(t2, y_1100, u_optimal_1100, Lambda, beta, eta, mu, alpha, gamma, psi, theta, tau, rho, delta), [t0, Tf], [S0, E0, Iu0, Id0, Q0, H0, C0, R0]);
+    [t3, y_1110] = ode45(@(t3, y_1110) odefunc(t3, y_1110, u_optimal_1110, Lambda, beta, eta, mu, alpha, gamma, psi, theta, tau, rho, delta), [t0, Tf], [S0, E0, Iu0, Id0, Q0, H0, C0, R0]);
+    [t4, y_1111] = ode45(@(t4, y_1111) odefunc(t4, y_1111, u_optimal_1111, Lambda, beta, eta, mu, alpha, gamma, psi, theta, tau, rho, delta), [t0, Tf], [S0, E0, Iu0, Id0, Q0, H0, C0, R0]);
     % Extract solution variables
-    S = y(:, 1);
-    E = y(:, 2);
-    Iu = y(:, 3);
-    Id = y(:, 4);
-    Q = y(:, 5);
-    H = y(:, 6);
-    C = y(:, 7);
-    R = y(:, 8);
-    
+    % S = y(:, 1);
+    % E = y(:, 2);
+    Iu_1000 = y_1000(:, 3);
+    Id_1000 = y_1000(:, 4);
+    % Q = y(:, 5);
+    % H = y(:, 6);
+    % C = y(:, 7);
+    % R = y(:, 8);
+
+    Iu_1100 = y_1100(:, 3);
+    Id_1100 = y_1100(:, 4);
+
+    Iu_1110 = y_1110(:, 3);
+    Id_1110 = y_1110(:, 4);
+
+    Iu_1111 = y_1111(:, 3);
+    Id_1111 = y_1111(:, 4);
     % Plot the variation of Iu and Id with respect to time
-    figure;
-    plot(t, Iu, 'b-', t, Id, 'r-', t, Q, 'y-');
-    xlabel('Time');
-    ylabel('Iu and Id');
-    title('Variation of Iu and Id over Time - optimal u values');
-    legend('Iu', 'Id', 'Q');
+    % figure;
+    % plot(t, Iu_1000, 'b-');
+    % hold on
+    % plot(t2, Iu_1100, 'r-');
     
+    figure;
+    plot(t3, Iu_1110, 'k-.');
+    hold on
+    plot(t, Iu_1000, 'b-', 'Marker', 'x');
+    hold on
+    plot(t4, Iu_1111, 'g-');
+    hold on
+    plot(t2, Iu_1100, 'r-');
+    %plot(t3, Iu_1110, 'y-', t4, Iu_1111, 'g-');
+    xlabel('Time');
+    ylabel('Iu_1000 and Iu_1100');
+    title('Variation of Iu over Time - optimal u values');
+    legend('Iu 1000', 'Iu 1100', 'Iu 1110', 'Iu 1111');
+
+    figure;
+    plot(t3, Id_1110, 'k-.');
+    hold on
+    plot(t, Id_1000, 'b-', 'Marker', 'x');
+    hold on
+    plot(t4, Id_1111, 'g--');
+    hold on
+    plot(t2, Id_1100, 'r-');
+    %plot(t3, Iu_1110, 'y-', t4, Iu_1111, 'g-');
+    xlabel('Time');
+    ylabel('Id_1000 - Id_1100 - Id_1110 - Id_1111');
+    title('Variation of Iu over Time - optimal u values');
+    legend('Iu 1000', 'Iu 1100', 'Iu 1110', 'Iu 1111');
+
+    % figure;
+    % plot(t, Id_1000, 'b-', t2, Id_1100, 'r-', t3, Id_1110, '--', t4, Id_1111, 'g-');
+    % xlabel('Time');
+    % ylabel('Iu_1000 and Iu_1100');
+    % title('Variation of Id over Time - optimal u values');
+    % legend('Id 1000', 'Id 1100', 'Id 1110', 'Id 1111');
 
     % Solve the system of differential equations for custom values of u
     % u_non_optimal_example = [0.734909, 0, 0, 0 ];
