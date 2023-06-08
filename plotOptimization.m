@@ -52,13 +52,13 @@ function main()
     fprintf('Optimal control variables: u(1) = %.6f, u(2) = %.6f, u(3) = %.6f, u(4) = %.6f\n', u_optimal_1111);
     fprintf('Optimal objective function value: %.6f\n', J_optimal_1111);
 
-    % figure;
-    % plot(u_values);
-    % xlabel('Iteration');
-    % ylabel('Control Variable u');
-    % title('Variation of Control Variable u during Iterations');
-    %  % Add labels for each line plotted
-    % legend('u(1)', 'u(2)', 'u(3)', 'u(4)');
+    figure;
+    plot(u_values);
+    xlabel('Iteration');
+    ylabel('Control Variable u');
+    title('Variation of Control Variable u during Iterations');
+     % Add labels for each line plotted
+    legend('u(1)', 'u(2)', 'u(3)', 'u(4)');
 
      % Set model parameters
     Lambda = 24500;
@@ -87,7 +87,7 @@ function main()
     [t2, y_1100] = ode45(@(t2, y_1100) odefunc(t2, y_1100, u_optimal_1100, Lambda, beta, eta, mu, alpha, gamma, psi, theta, tau, rho, delta), [t0, Tf], [S0, E0, Iu0, Id0, Q0, H0, C0, R0]);
     [t3, y_1110] = ode45(@(t3, y_1110) odefunc(t3, y_1110, u_optimal_1110, Lambda, beta, eta, mu, alpha, gamma, psi, theta, tau, rho, delta), [t0, Tf], [S0, E0, Iu0, Id0, Q0, H0, C0, R0]);
     [t4, y_1111] = ode45(@(t4, y_1111) odefunc(t4, y_1111, u_optimal_1111, Lambda, beta, eta, mu, alpha, gamma, psi, theta, tau, rho, delta), [t0, Tf], [S0, E0, Iu0, Id0, Q0, H0, C0, R0]);
-    % Extract solution variables
+    % Extract solution variables for u1=1, u2=u3=u4=0
     % S = y(:, 1);
     % E = y(:, 2);
     Iu_1000 = y_1000(:, 3);
@@ -96,21 +96,20 @@ function main()
     % H = y(:, 6);
     % C = y(:, 7);
     % R = y(:, 8);
-
+    
+    % Extract solution variables for u1=1, u2=1 ,u3=u4=0
     Iu_1100 = y_1100(:, 3);
     Id_1100 = y_1100(:, 4);
-
+    
+    % Extract solution variables for u1=1, u2=1 ,u3=1,u4=0
     Iu_1110 = y_1110(:, 3);
     Id_1110 = y_1110(:, 4);
-
+    
+    % Extract solution variables for u1=1, u2=1 ,u3=1,u4=1
     Iu_1111 = y_1111(:, 3);
     Id_1111 = y_1111(:, 4);
-    % Plot the variation of Iu and Id with respect to time
-    % figure;
-    % plot(t, Iu_1000, 'b-');
-    % hold on
-    % plot(t2, Iu_1100, 'r-');
     
+    %Plot for Iu
     figure;
     plot(t3, Iu_1110, 'k-.');
     hold on
@@ -124,7 +123,8 @@ function main()
     ylabel('Iu_1000 and Iu_1100');
     title('Variation of Iu over Time - optimal u values');
     legend('Iu 1000', 'Iu 1100', 'Iu 1110', 'Iu 1111');
-
+    
+    %Plot for Id
     figure;
     plot(t3, Id_1110, 'k-.');
     hold on
@@ -139,35 +139,7 @@ function main()
     title('Variation of Iu over Time - optimal u values');
     legend('Iu 1000', 'Iu 1100', 'Iu 1110', 'Iu 1111');
 
-    % figure;
-    % plot(t, Id_1000, 'b-', t2, Id_1100, 'r-', t3, Id_1110, '--', t4, Id_1111, 'g-');
-    % xlabel('Time');
-    % ylabel('Iu_1000 and Iu_1100');
-    % title('Variation of Id over Time - optimal u values');
-    % legend('Id 1000', 'Id 1100', 'Id 1110', 'Id 1111');
-
-    % Solve the system of differential equations for custom values of u
-    % u_non_optimal_example = [0.734909, 0, 0, 0 ];
-    % [t2, y2] = ode45(@(t2, y2) odefunc(t2, y2, u_non_optimal_example, Lambda, beta, eta, mu, alpha, gamma, psi, theta, tau, rho, delta), [t0, Tf], [S0, E0, Iu0, Id0, Q0, H0, C0, R0]);
-    % 
-    % % Extract solution variables
-    % S = y2(:, 1);
-    % E = y2(:, 2);
-    % Iu2 = y2(:, 3);
-    % Id2 = y2(:, 4);
-    % Q = y2(:, 5);
-    % H = y2(:, 6);
-    % C = y2(:, 7);
-    % R = y2(:, 8);
-    % 
-    % % Plot the variation of Iu and Id with respect to time
-    % figure;
-    % plot(t2, Iu2, 'b-', t2, Id2, 'r-', t2, Q, 'y-');
-    % xlabel('Time');
-    % ylabel('Iu and Id');
-    % title('Variation of Iu and Id over Time - non optimal u values');
-    % legend('Iu', 'Id', 'Q');
-
+    
 end
 
 function J = objectiveFunction(u, w, epsilon, t0, Tf)
