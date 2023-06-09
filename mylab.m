@@ -1,7 +1,6 @@
 close
 
 flag1=0;
-flag2=0;
 flag3=0;
 flag4=0;
 flag5=0;
@@ -10,421 +9,48 @@ var2=0;
 var3=0;
 var4=0;
 var5=0;
-    
-while(flag1==0)    
-    var1 = input('Enter a value for Lambda: ');
-    if(var1>=0)
-        Lambda = var1;
-        flag1=1;
-    else
-        disp('        ')
-        disp('ERROR: Lambda must be positive')
-        disp('         ')
-    end
-end
-flag1=0;
-disp('         ')
-while(flag1==0)    
-    var1 = input('Enter a value for beta: ');
-    if(var1>=0)
-        beta = var1;
-        flag1=1;
-    else
-        disp('        ')
-        disp('ERROR: beta must be positive')
-        disp('         ')
-    end
-end
-flag1=0;
-disp('            ')
-while(flag1==0)    
-    var1 = input('Enter a value for eta: ');
-    if(var1>=0)
-        eta = var1;
-        flag1=1;
-    else
-        disp('        ')
-        disp('ERROR: eta must be positive')
-        disp('         ')
-    end
-end
-flag1=0;
-disp('           ')
-while(flag1==0)    
-    var1 = input('Enter a value for mu: ');
-    if(var1>=0)
-        mu = var1;
-        flag1=1;
-    else
-        disp('        ')
-        disp('ERROR: mu must be positive')
-        disp('         ')
-    end
-end
-flag1=0;
-disp('              ')
-while(flag1==0)    
-    var1 = input('Enter a value for alpha1: ');
-    if(var1>=0)
-        alpha1 = var1;
-        flag1=1;
-    else
-        disp('        ')
-        disp('ERROR: alpha1 must be positive')
-        disp('         ')
-    end
-end
-flag1=0;
-disp('         ')
-while(flag1==0)    
-    var1 = input('Enter a value for alpha2: ');
-    if(var1>=0)
-        alpha2 = var1;
-        flag1=1;
-    else
-        disp('        ')
-        disp('ERROR: alpha2 must be positive')
-        disp('         ')
-    end
-end
-flag1=0;
-disp('         ')
-while(flag1==0)    
-    var1 = input('Enter a value for gamma: ');
-    if(var1>=0)
-        gamma = var1;
-        flag1=1;
-    else
-        disp('        ')
-        disp('ERROR: gamma must be positive')
-        disp('         ')
-    end
-end
-flag1=0;
-disp('         ')
-while(flag1==0)    
-    var1 = input('Enter a value for psi1: ');
-    if(var1>=0)
-        psi1 = var1;
-        flag1=1;
-    else
-        disp('        ')
-        disp('ERROR: psi1 must be positive')
-        disp('         ')
-    end
-end
-flag1=0;
-disp('         ')
-while(flag1==0)    
-    var1 = input('Enter a value psi2: ');
-    if(var1>=0)
-        psi2 = var1;
-        flag1=1;
-    else
-        disp('        ')
-        disp('ERROR: psi2 must be positive')
-        disp('         ')
-    end
-end
-flag1=0;
-disp('         ')
-while(flag1==0)    
-    var1 = input('Enter a value for psi3: ');
-    if(var1>=0)
-        psi3 = var1;
-        flag1=1;
-    else
-        disp('        ')
-        disp('ERROR: psi3 must be positive')
-        disp('         ')
-    end
-end
-flag1=0;
-disp('         ')
-while(flag1==0)    
-    var1 = input('Enter a value for psi4: ');
-    if(var1>=0)
-        psi4 = var1;
-        flag1=1;
-    else
-        disp('        ')
-        disp('ERROR: psi4 must be positive')
-        disp('         ')
-    end
-end
-flag1=0;
-disp('         ')
-while(flag1==0)    
-    var1 = input('Enter a value for theta1: ');
-    if(var1>=0)
-       theta1= var1;
-        flag1=1;
-    else
-        disp('        ')
-        disp('ERROR: theta1 must be positive')
-        disp('         ')
-    end
-end
-flag1=0;
-disp('         ')
-while(flag1==0)    
-    var1 = input('Enter a value for theta2: ');
-    if(var1>=0)
-       theta2 = var1;
-        flag1=1;
-    else
-        disp('        ')
-        disp('ERROR: theta2 must be positive')
-        disp('         ')
-    end
-end
-flag1=0;
-disp('         ')
-while(flag1==0)    
-    var1 = input('Enter a value for tau: ');
-    if(var1>=0)
-        tau = var1;
-        flag1=1;
-    else
-        disp('        ')
-        disp('ERROR: tau must be positive')
-        disp('         ')
-    end
-end
-flag1=0;
-disp('         ')
-while(flag1==0)    
-    var1 = input('Enter a value for rho: ');
-    if(var1>=0)
-        rho = var1;
-        flag1=1;
-    else
-        disp('        ')
-        disp('ERROR: rho must be positive')
-        disp('         ')
-    end
-end
-flag1=0;
-disp('         ')
-while(flag1==0)    
-    var1 = input('Enter a value for delta1: ');
-    if(var1>=0)
-        delta1 = var1;
-        flag1=1;
-    else
-        disp('        ')
-        disp('ERROR: delta1 must be positive')
-        disp('         ')
-    end
-end
-flag1=0;
-disp('         ')
-while(flag1==0)    
-    var1 = input('Enter a value for delta2: ');
-    if(var1>=0)
-        delta2 = var1;
-        flag1=1;
-    else
-        disp('        ')
-        disp('ERROR: delta2 must be positive')
-        disp('         ')
-    end
-end
-flag1=0;
-disp('         ')
-while(flag1==0)    
-   var1 = input('Enter a value for eta: ');
-   if(var1>= 1.5)
-       eta = var1;
-      flag1=1;
-  else
-      disp('        ')
-       disp('ERROR: eta must be greater than 1')
-       disp('         ')
-   end
-end
-flag1=0;
-disp('         ')
-while(flag1==0)
-    while(flag2==0)
-        var2 = input('Enter an initial number of susceptibles  (x_10): ');
-        if( var2 >=0 )
-            x10 = var2;
-            flag2=1;
-        else
-            disp('        ')
-            disp('ERROR: x_10 must be positive')
-            disp('        ')
-        end
-    end
-    flag2=0;
-    disp('          ')
-    while(flag2==0)
-        var2 = input('Enter an initial number of exposed  (x_20): ');
-        if( var2 >=0 )
-            x20 = var2;
-            flag2=1;
-        else
-            disp('        ')
-            disp('ERROR: x_20 must be positive')
-            disp('        ')
-        end
-    end
-    flag2=0;
-    disp('          ')
-    while(flag2==0)
-        var2 = input('Enter an initial number of infected asymptomatic (x_30): ');
-        if(var2>=0)
-            x30 = var2;
-            flag2=1;
-        else
-            disp('        ')
-            disp('ERROR: x_30 must be positive')
-            disp('        ')
-        end
-    end
-    flag2=0;
-    disp('        ')
-    while(flag2==0)
-        var2 = input('Enter an initial number of infected symptomatic (x_40): ');
-        if((var2>=0))
-            x40 = var2;
-            flag2=1;
-        else
-            disp('        ')
-            disp('ERROR: x_40 must be positive')
-            disp('        ')
-        end
-    end
-   flag2=0;
-   disp('        ')
-   while(flag2==0)
-        var2 = input('Enter an initial number of quarantined (x_50): ');
-        if( var2>=0 )
-            x50 = var2;
-            flag2=1;
-        else
-            disp('        ')
-            disp('ERROR: x_50 must be positive')
-            disp('        ')
-        end
-   end
-  flag2=0;
-  disp('        ')
-  while(flag2==0)
-        var2 = input('Enter an initial number of hospitalized (x_60): ');
-        if((var2>=0))
-            x60 = var2;
-            flag2=1;
-        else
-            disp('        ')
-            disp('ERROR: x_60 must be positive')
-            disp('        ')
-        end
-  end
-  flag2=0;
-  disp('        ')
-  while(flag2==0)
-        var2 = input('Enter an initial  number of intensive care unit persons (x_70): ');
-        if((var2>=0))
-            x70 = var2;
-            flag2=1;
-        else
-            disp('        ')
-            disp('ERROR: x_70 must be positive')
-            disp('        ')
-        end
-        
-  end
-    flag2=0;
-  disp('        ')
-  while(flag2==0)
-        var2 = input('Enter an initial  number of recovered individuals (x_80): ');
-        if((var2>=0))
-            x80 = var2;
-            flag2=1;
-        else
-            disp('        ')
-            disp('ERROR: x_80 must be positive')
-            disp('        ')
-        end
-        
-  end
-   if(x10 + x20 + x30 + x40 + x50 + x60 + x70 + x80 <= 1000)
-        flag1=1;
-    else
-        disp('      ')
-        disp('ERROR: sum of initial conditions must be less than or equal to 1000.')
-        disp('         ')
-        flag2=0;
-    end
-end  
-flag2=0;
-disp('        ')
-while(flag2==0)
-    var2 = input('Enter a value for the weight parameter omega1: ');
-    if(var2>0)
-        omega1 = var2;
-        flag2=1;
-    else
-        disp('        ')
-        disp('ERROR: omega1 must be positive')
-        disp('        ')
-    end
-end
-flag2=0;
-disp('          ')
-while(flag2==0)
-    var2 = input('Enter a value for the weight parameter omega2: ');
-    if(var2>0)
-        omega2 = var2;
-        flag2=1;
-    else
-        disp('        ')
-        disp('ERROR: omega2 must be positive')
-        disp('        ')
-    end
-end
-flag2=0;
-disp('          ')
-while(flag2==0)
-    var2 = input('Enter a value for the weight parameter omega3: ');
-    if(var2>0)
-        omega3 = var2;
-        flag2=1;
-    else
-        disp('        ')
-        disp('ERROR: omega3 must be positive')
-        disp('        ')
-    end
-end
-flag2=0;
-disp('          ')
-while(flag2==0)
-    var2 = input('Enter a value for the weight parameter omega4: ');
-    if(var2>0)
-        omega4 = var2;
-        flag2=1;
-    else
-        disp('        ')
-        disp('ERROR: omega4 must be positive')
-        disp('        ')
-    end
-end
-flag2=0;
-disp('          ')
-while(flag2==0)
-    var2 = input('How long would you like to run this system: ');
-    if(var2>0)
-        T=var2;
-        flag2=1;
-    else
-        disp('        ')
-        disp('ERROR: T must be positive.')
-        disp('         ')
-    end
-end
-disp('              ')
+ 
+Lambda = 24500;
+beta = 1.3295; 
+eta = 0.5663;
+mu = 0.0161;
+alpha1 = 0.6; 
+alpha2 = 0.4;
+gamma = 0.2070;
+psi1 = 0.3622;
+psi2 = 0.0206;
+psi3 = 0.5586;
+psi4 = 0.01614;
+theta1 = 0.89976;
+theta2 = 0.5; 
+tau = 0.46030;
+rho = 0.75431;
+delta1 = 0.15;
+delta2 = 0.22858;
+% initial number of susceptibles
+x10 = 59999999;
+% initial number of exposed
+x20 = 0;
+% initial number of infected asymptomatic
+x30 = 0;
+% initial number of infected symptomatic 
+x40 = 1;
+% initial number of quarantined
+x50 = 0;
+% initial number of hospitalized
+x60 = 0;
+% initial  number of intensive care unit persons
+x70 = 0;
+% initial  number of recovered individuals
+x80 = 0;
+% values for the weight parameter omega
+omega1 = 0.1;
+omega2 = 0.2;
+omega3 = 0.3;
+omega4 = 0.4;
+% How long you'd like to run this system 
+T = 2;
+
 disp('One moment please...')
 y1= lab(Lambda, beta, eta, mu, alpha1, alpha2, gamma, psi1, psi2, psi3, psi4, theta1, theta2, tau, rho, delta1, delta2, x10, x20, x30, x40, x50, x60, x70, x80, omega1, omega2, omega3, omega4, T);
 disp('               ')
@@ -446,7 +72,7 @@ while(flag3==0)
     disp('   13. all variables')
     var3=input('Type 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,12 or 13: ');
 
-    if((var3==1) | (var3==2) | (var3==3) | (var3==4) | (var3==5) | (var3==6)| (var3==7) | (var3==8) | (var3==9) | (var3==10) | (var3==11) | (var3==12) | (var3==13))
+    if((var3==1) || (var3==2) || (var3==3) || (var3==4) || (var3==5) || (var3==6)|| (var3==7) || (var3==8) || (var3==9) || (var3==10) || (var3==11) || (var3==12) || (var3==13))
         flag3=1;
         disp('         ')
         while(flag4==0)
@@ -822,62 +448,62 @@ if(var4==1)
         plot(y1(1,:),y1(2,:),'b',y2(1,:),y2(2,:),'g')
         xlabel('Time')
         ylabel('Susceptible')
-        legend('First value','Second value',0)
+        legend('First value','Second value')
     elseif(var3==2)
         plot(y1(1,:),y1(3,:),'b',y2(1,:),y2(3,:),'g')
         xlabel('Time')
         ylabel('Exposed')
-        legend('First value','Second value',0)
+        legend('First value','Second value')
     elseif(var3==3)
         plot(y1(1,:),y1(4,:),'b',y2(1,:),y2(4,:),'g')
         xlabel('Time')
         ylabel('Infected asymptomatic')
-        legend('First value','Second value',0)
+        legend('First value','Second value')
     elseif(var3==4)
         plot(y1(1,:),y1(5,:),'b',y2(1,:),y2(5,:),'g')
         xlabel('Time')
         ylabel('Infected symptomatic')
-        legend('First value','Second value',0)
+        legend('First value','Second value')
    elseif(var3==5)
         plot(y1(1,:),y1(6,:),'b',y2(1,:),y2(6,:),'g')
         xlabel('Time')
         ylabel('Quarantined')
-        legend('First value','Second value',0)
+        legend('First value','Second value')
    elseif(var3==6)
         plot(y1(1,:),y1(7,:),'b',y2(1,:),y2(7,:),'g')
         xlabel('Time')
         ylabel('Hospitalized')
-        legend('First value','Second value',0)  
+        legend('First value','Second value')  
    elseif(var3==7)
         plot(y1(1,:),y1(8,:),'b',y2(1,:),y2(8,:),'g')
         xlabel('Time')
         ylabel('Intensive Care Unit')
-        legend('First value','Second value',0)
+        legend('First value','Second value')
     elseif(var3==8)
         plot(y1(1,:),y1(9,:),'b',y2(1,:),y2(9,:),'g')
         xlabel('Time')
         ylabel('Recovered')
-        legend('First value','Second value',0)    
+        legend('First value','Second value')    
     elseif(var3==9)
         plot(y1(1,:),y1(10,:),'b',y2(1,:),y2(10,:),'g')
         xlabel('Time')
         ylabel('Preventive strategy efforts')
-        legend('First value','Second value',0)
+        legend('First value','Second value')
      elseif(var3==10)
         plot(y1(1,:),y1(11,:),'b',y2(1,:),y2(11,:),'g')
         xlabel('Time')
         ylabel('Mass testing and screening')
-        legend('First value','Second value',0) 
+        legend('First value','Second value') 
     elseif(var3==11)
         plot(y1(1,:),y1(12,:),'b',y2(1,:),y2(12,:),'g')
         xlabel('Time')
         ylabel('Quarantining')
-        legend('First value','Second value',0) 
+        legend('First value','Second value') 
      elseif(var3==12)
         plot(y1(1,:),y1(13,:),'b',y2(1,:),y2(13,:),'g')
         xlabel('Time')
         ylabel('Intense medical care')
-        legend('First value','Second value',0)   
+        legend('First value','Second value')   
     elseif(var3==13)
         
                     subplot(10,1,1);plot(y1(1,:),y1(2,:),'b',y2(1,:),y2(2,:),'g')

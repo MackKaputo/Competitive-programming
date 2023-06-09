@@ -87,27 +87,47 @@ function main()
     [t2, y_1100] = ode45(@(t2, y_1100) odefunc(t2, y_1100, u_optimal_1100, Lambda, beta, eta, mu, alpha, gamma, psi, theta, tau, rho, delta), [t0, Tf], [S0, E0, Iu0, Id0, Q0, H0, C0, R0]);
     [t3, y_1110] = ode45(@(t3, y_1110) odefunc(t3, y_1110, u_optimal_1110, Lambda, beta, eta, mu, alpha, gamma, psi, theta, tau, rho, delta), [t0, Tf], [S0, E0, Iu0, Id0, Q0, H0, C0, R0]);
     [t4, y_1111] = ode45(@(t4, y_1111) odefunc(t4, y_1111, u_optimal_1111, Lambda, beta, eta, mu, alpha, gamma, psi, theta, tau, rho, delta), [t0, Tf], [S0, E0, Iu0, Id0, Q0, H0, C0, R0]);
+    
     % Extract solution variables for u1=1, u2=u3=u4=0
-    % S = y(:, 1);
-    % E = y(:, 2);
+    
     Iu_1000 = y_1000(:, 3);
     Id_1000 = y_1000(:, 4);
-    % Q = y(:, 5);
-    % H = y(:, 6);
-    % C = y(:, 7);
-    % R = y(:, 8);
+    Q_1000 = y_1000(:, 5);
+    % H_1000 = y_1000(:, 6);
+    % C_1000 = y_1000(:, 7);
+    % R_1000 = y_1000(:, 8);
+    % S_1000 = y_1000(:, 1);
+    % E_1000 = y_1000(:, 2);
     
     % Extract solution variables for u1=1, u2=1 ,u3=u4=0
     Iu_1100 = y_1100(:, 3);
     Id_1100 = y_1100(:, 4);
+    Q_1100 = y_1100(:, 5);
+    % H_1100 = y_1100(:, 6);
+    % C_1100 = y_1100(:, 7);
+    % R_1100 = y_1100(:, 8);
+    % S_1100 = y_1100(:, 1);
+    % E_1100 = y_1100(:, 2);
     
     % Extract solution variables for u1=1, u2=1 ,u3=1,u4=0
     Iu_1110 = y_1110(:, 3);
     Id_1110 = y_1110(:, 4);
+    Q_1110 = y_1110(:, 5);
+    % H_1110 = y_1110(:, 6);
+    % C_1110 = y_1110(:, 7);
+    % R_1110 = y_1110(:, 8);
+    % S_1110 = y_1110(:, 1);
+    % E_1110 = y_1110(:, 2);
     
     % Extract solution variables for u1=1, u2=1 ,u3=1,u4=1
     Iu_1111 = y_1111(:, 3);
     Id_1111 = y_1111(:, 4);
+    Q_1111 = y_1111(:, 5);
+    % H_1111 = y_1111(:, 6);
+    % C_1111 = y_1111(:, 7);
+    % R_1111 = y_1111(:, 8);
+    % S_1111 = y_1111(:, 1);
+    % E_1111 = y_1111(:, 2);
     
     %Plot for Iu
     figure;
@@ -118,7 +138,6 @@ function main()
     plot(t4, Iu_1111, 'g-');
     hold on
     plot(t2, Iu_1100, 'r-');
-    %plot(t3, Iu_1110, 'y-', t4, Iu_1111, 'g-');
     xlabel('Time');
     ylabel('Iu_1000 and Iu_1100');
     title('Variation of Iu over Time - optimal u values');
@@ -133,11 +152,24 @@ function main()
     plot(t4, Id_1111, 'g--');
     hold on
     plot(t2, Id_1100, 'r-');
-    %plot(t3, Iu_1110, 'y-', t4, Iu_1111, 'g-');
     xlabel('Time');
     ylabel('Id_1000 - Id_1100 - Id_1110 - Id_1111');
     title('Variation of Iu over Time - optimal u values');
     legend('Iu 1000', 'Iu 1100', 'Iu 1110', 'Iu 1111');
+
+    %Plot for Q
+    figure;
+    plot(t3, Q_1110, 'k-.');
+    hold on
+    plot(t, Q_1000, 'b-', 'Marker', 'x');
+    hold on
+    plot(t4, Q_1111, 'g--');
+    hold on
+    plot(t2, Q_1100, 'r-');
+    xlabel('Time');
+    ylabel('Q_1000 - Q_1100 - Q_1110 - Q_1111');
+    title('Variation of Q over Time - optimal u values');
+    legend('Q 1000', 'Q 1100', 'Q 1110', 'Q 1111');
 
     
 end
