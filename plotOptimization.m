@@ -198,7 +198,7 @@ function main()
     plot(t2, Iu_1100, 'r-');
     xlabel('Time');
     ylabel('Iu_1000 and Iu_1100');
-    title('Variation of Id over Time - optimal u values');
+    title('Variation of Iu over Time - optimal u values');
     legend('Iu 1000', 'Iu 1100', 'Iu 1110', 'Iu 1111');
     
     %Plot for Id
@@ -212,8 +212,8 @@ function main()
     plot(t2, Id_1100, 'r-');
     xlabel('Time');
     ylabel('Id_1000 - Id_1100 - Id_1110 - Id_1111');
-    title('Variation of Iu over Time - optimal u values');
-    legend('Id 1000', 'Id 1100', 'Id 1110', 'Iu 1111');
+    title('Variation of Id over Time - optimal u values');
+    legend('Id 1000', 'Id 1100', 'Id 1110', 'Id 1111');
 
     %Plot for Q
     figure;
