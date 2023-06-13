@@ -1,4 +1,5 @@
 function main()
+    global u_values_0000;
     global u_values_1000;
     global u_values_1100;
     global u_values_1110;
@@ -14,18 +15,27 @@ function main()
     t0 = 0; % Initial time
     Tf = 160; % Final time
     % Variable to store u values during each iteration;
+    u_values_0000 = [];
     u_values_1000 = [];
     u_values_1100 = [];
     u_values_1110 = [];
     u_values_1111 = [];
     
     % Output function to collect u values
+    outputFcn_0000 = @(x, optimValues, state) collectU_0000(x, optimValues, state);
     outputFcn_1000 = @(x, optimValues, state) collectU_1000(x, optimValues, state);
     outputFcn_1100 = @(x, optimValues, state) collectU_1100(x, optimValues, state);
     outputFcn_1110 = @(x, optimValues, state) collectU_1110(x, optimValues, state);
     outputFcn_1111 = @(x, optimValues, state) collectU_1111(x, optimValues, state);
     
     % Function to collect u values
+    function stop = collectU_0000(x, ~, state)
+        if isequal(state, 'iter')
+            u_values_0000 = [u_values_0000; x];
+        end
+        stop = false;
+    end
+
     function stop = collectU_1000(x, ~, state)
         if isequal(state, 'iter')
             u_values_1000 = [u_values_1000; x];
@@ -54,11 +64,13 @@ function main()
     
     
     % Optimization
+    options_0000 = optimoptions(@fmincon, 'Display', 'iter');
     options_1000 = optimoptions(@fmincon, 'Display', 'iter');
     options_1100 = optimoptions(@fmincon, 'Display', 'iter');
     options_1110 = optimoptions(@fmincon, 'Display', 'iter');
     options_1111 = optimoptions(@fmincon, 'Display', 'iter');
     % Set the 'OutputFcn' option in 'options' structure
+    options_0000.OutputFcn = outputFcn_0000;
     options_1000.OutputFcn = outputFcn_1000;
     options_1100.OutputFcn = outputFcn_1100;
     options_1110.OutputFcn = outputFcn_1110;
@@ -66,9 +78,14 @@ function main()
     x0 = [0.5, 0.5, 0.5, 0.5]; % Initial guesses for control variables u(1), u(2), u(3), u(4)
     lb = [0, 0, 0, 0]; % Lower bounds for control variables u(1), u(2), u(3), u(4)
     ub_1000 = [1, 0, 0, 0]; % Upper bounds for control variables u(1), u(2), u(3), u(4)
+    ub_0000 = [0, 0, 0, 0];
     ub_1100 = [1, 1, 0, 0];
     ub_1110 = [1, 1, 1, 0];
     ub_1111 = [1, 1, 1, 1];
+
+    [u_optimal_0000, J_optimal_0000] = fmincon(@(u) objectiveFunction(u, w, epsilon, t0, Tf), x0, [], [], [], [], lb, ub_0000, [], options_0000);
+    fprintf('Optimal control variables: u(1) = %.6f, u(2) = %.6f, u(3) = %.6f, u(4) = %.6f\n', u_optimal_0000);
+    fprintf('Optimal objective function value: %.6f\n', J_optimal_0000);
 
     [u_optimal_1000, J_optimal_1000] = fmincon(@(u) objectiveFunction(u, w, epsilon, t0, Tf), x0, [], [], [], [], lb, ub_1000, [], options_1000);
     fprintf('Optimal control variables: u(1) = %.6f, u(2) = %.6f, u(3) = %.6f, u(4) = %.6f\n', u_optimal_1000);
@@ -85,6 +102,14 @@ function main()
     [u_optimal_1111, J_optimal_1111] = fmincon(@(u) objectiveFunction(u, w, epsilon, t0, Tf), x0, [], [], [], [], lb, ub_1111, [], options_1111);
     fprintf('Optimal control variables: u(1) = %.6f, u(2) = %.6f, u(3) = %.6f, u(4) = %.6f\n', u_optimal_1111);
     fprintf('Optimal objective function value: %.6f\n', J_optimal_1111);
+
+    figure;
+    plot(u_values_0000);
+    xlabel('Iteration');
+    ylabel('Control Variable u');
+    title('Variation of Control Variable u during Iterations 0 0 0 0');
+     % Add labels for each line plotted
+    legend('u(1) u(2) u(3) u(4)');
 
     figure;
     plot(u_values_1000);
@@ -141,11 +166,22 @@ function main()
     R0 = 0;    % Initial value for R
 
     % Solve the system of differential equations
+    [t_0, y_0000] = ode45(@(t_0, y_0000) odefunc(t_0, y_0000, u_optimal_0000, Lambda, beta, eta, mu, alpha, gamma, psi, theta, tau, rho, delta), [t0, Tf], [S0, E0, Iu0, Id0, Q0, H0, C0, R0]);
     [t, y_1000] = ode45(@(t, y_1000) odefunc(t, y_1000, u_optimal_1000, Lambda, beta, eta, mu, alpha, gamma, psi, theta, tau, rho, delta), [t0, Tf], [S0, E0, Iu0, Id0, Q0, H0, C0, R0]);
     [t2, y_1100] = ode45(@(t2, y_1100) odefunc(t2, y_1100, u_optimal_1100, Lambda, beta, eta, mu, alpha, gamma, psi, theta, tau, rho, delta), [t0, Tf], [S0, E0, Iu0, Id0, Q0, H0, C0, R0]);
     [t3, y_1110] = ode45(@(t3, y_1110) odefunc(t3, y_1110, u_optimal_1110, Lambda, beta, eta, mu, alpha, gamma, psi, theta, tau, rho, delta), [t0, Tf], [S0, E0, Iu0, Id0, Q0, H0, C0, R0]);
     [t4, y_1111] = ode45(@(t4, y_1111) odefunc(t4, y_1111, u_optimal_1111, Lambda, beta, eta, mu, alpha, gamma, psi, theta, tau, rho, delta), [t0, Tf], [S0, E0, Iu0, Id0, Q0, H0, C0, R0]);
     
+    % Extract solution variables for u1=1, u2=u3=u4=0
+    
+    Iu_0000 = y_0000(:, 3);
+    Id_0000 = y_0000(:, 4);
+    Q_0000 = y_0000(:, 5);
+    % H_1000 = y_1000(:, 6);
+    % C_1000 = y_1000(:, 7);
+    % R_1000 = y_1000(:, 8);
+    % S_1000 = y_1000(:, 1);
+    % E_1000 = y_1000(:, 2);
     % Extract solution variables for u1=1, u2=u3=u4=0
     
     Iu_1000 = y_1000(:, 3);
@@ -189,6 +225,8 @@ function main()
     
     %Plot for Iu
     figure;
+    plot(t_0, Iu_0000, 'y-.');
+    hold on
     plot(t3, Iu_1110, 'k-.');
     hold on
     plot(t, Iu_1000, 'b-', 'Marker', 'x');
@@ -199,10 +237,12 @@ function main()
     xlabel('Time');
     ylabel('Iu_1000 and Iu_1100');
     title('Variation of Iu over Time - optimal u values');
-    legend('Iu 1000', 'Iu 1100', 'Iu 1110', 'Iu 1111');
+    legend('Iu 0000','Iu 1000', 'Iu 1100', 'Iu 1110', 'Iu 1111');
     
     %Plot for Id
     figure;
+    plot(t_0, Id_0000, 'y-.');
+    hold on
     plot(t3, Id_1110, 'k-.');
     hold on
     plot(t, Id_1000, 'b-', 'Marker', 'x');
@@ -213,10 +253,12 @@ function main()
     xlabel('Time');
     ylabel('Id_1000 - Id_1100 - Id_1110 - Id_1111');
     title('Variation of Id over Time - optimal u values');
-    legend('Id 1000', 'Id 1100', 'Id 1110', 'Id 1111');
+    legend('Id 0000','Id 1000', 'Id 1100', 'Id 1110', 'Id 1111');
 
     %Plot for Q
     figure;
+    plot(t_0, Q_0000, 'y-.');
+    hold on
     plot(t3, Q_1110, 'k-.');
     hold on
     plot(t, Q_1000, 'b-', 'Marker', 'x');
@@ -227,7 +269,7 @@ function main()
     xlabel('Time');
     ylabel('Q_1000 - Q_1100 - Q_1110 - Q_1111');
     title('Variation of Q over Time - optimal u values');
-    legend('Q 1000', 'Q 1100', 'Q 1110', 'Q 1111');
+    legend('Q 0000','Q 1000', 'Q 1100', 'Q 1110', 'Q 1111');
 
     
 end
